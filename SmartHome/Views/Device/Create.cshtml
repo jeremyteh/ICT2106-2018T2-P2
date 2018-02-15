@@ -1,0 +1,75 @@
+﻿@model SmartHome.Models.Device
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<h4>Device</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="HouseholdID" class="control-label"></label>
+                <input asp-for="HouseholdID" class="form-control" />
+                <span asp-validation-for="HouseholdID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DeviceName" class="control-label"></label>
+                <input asp-for="DeviceName" class="form-control" />
+                <span asp-validation-for="DeviceName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Brand" class="control-label"></label>
+                <input asp-for="Brand" class="form-control" />
+                <span asp-validation-for="Brand" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Model" class="control-label"></label>
+                <input asp-for="Model" class="form-control" />
+                <span asp-validation-for="Model" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Type" class="control-label"></label>
+                <input asp-for="Type" class="form-control" />
+                <span asp-validation-for="Type" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Location" class="control-label"></label>
+                <input asp-for="Location" class="form-control" />
+                <span asp-validation-for="Location" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="State" class="control-label"></label>
+                <input asp-for="State" class="form-control" />
+                <span asp-validation-for="State" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UsageKwH" class="control-label"></label>
+                <input asp-for="UsageKwH" class="form-control" />
+                <span asp-validation-for="UsageKwH" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="favourite" class="control-label"></label>
+                <input asp-for="favourite" class="form-control" />
+                <span asp-validation-for="favourite" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="timestamp" class="control-label"></label>
+                <input asp-for="timestamp" class="form-control" />
+                <span asp-validation-for="timestamp" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
