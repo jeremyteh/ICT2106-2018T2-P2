@@ -86,7 +86,7 @@ namespace SmartHome.Controllers
         }
 
         // GET: Scheduler/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? id, string deviceName)
         {
             if (id == null)
             {
@@ -98,6 +98,7 @@ namespace SmartHome.Controllers
             {
                 return NotFound();
             }
+            @ViewBag.dName = deviceName;
             return View(scheduler);
         }
 
@@ -136,7 +137,7 @@ namespace SmartHome.Controllers
         }
 
         // GET: Scheduler/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int? id, string deviceName)
         {
             if (id == null)
             {
@@ -148,7 +149,7 @@ namespace SmartHome.Controllers
             {
                 return NotFound();
             }
-
+            @ViewBag.dName = deviceName;
             return View(scheduler);
         }
 

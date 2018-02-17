@@ -1,4 +1,5 @@
 ﻿@model SmartHome.Models.Scheduler
+<link href="~/css/scheduler.css" rel="Stylesheet"/>
 
 @{
     ViewData["Title"] = "Edit";
@@ -6,10 +7,10 @@
 
 <h2>Edit</h2>
 
-<h4>Scheduler</h4>
+<h4>@ViewBag.dName</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-4"  id="content" >
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
@@ -44,4 +45,3 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
-
