@@ -11,37 +11,37 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.deviceId)
+            Device ID
         </dt>
         <dd>
             @Html.DisplayFor(model => model.deviceId)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.deviceName)
+            Device name
         </dt>
         <dd>
             @Html.DisplayFor(model => model.deviceName)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.startTime)
+            Starting time
         </dt>
         <dd>
             @Html.DisplayFor(model => model.startTime)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.endTime)
+            Ending Time
         </dt>
         <dd>
             @Html.DisplayFor(model => model.endTime)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.applyToEveryWeek)
+            Schedule every week
         </dt>
         <dd>
             @Html.DisplayFor(model => model.applyToEveryWeek)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.dayOfWeek)
+            Day
         </dt>
         <dd>
             @Html.DisplayFor(model => model.dayOfWeek)
@@ -49,6 +49,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> 
     <a asp-action="Index">Back to List</a>
 </div>

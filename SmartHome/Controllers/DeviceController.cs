@@ -12,13 +12,11 @@ namespace SmartHome.Controllers
 {
     public class DeviceController : Controller
     {
-        internal DataGateway<Device> dataGateway;
-
+        internal DataGateway<Device> dataGateway;       
         public DeviceController(SmartHomeDbContext context)
         {
             dataGateway = new DeviceGateway(context);
         }
-
         // GET: Devices
         public ActionResult Index()
         {
