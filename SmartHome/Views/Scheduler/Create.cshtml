@@ -1,0 +1,57 @@
+﻿@model SmartHome.Models.Scheduler
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<h4>Scheduler</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="deviceId" class="control-label"></label>
+                <input asp-for="deviceId" class="form-control" value="@ViewBag.dID" readonly/>
+                <span asp-validation-for="deviceId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="deviceName" class="control-label"></label>
+                <input asp-for="deviceName" class="form-control" value="@ViewBag.dName" readonly/>
+                <span asp-validation-for="deviceName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="startTime" class="control-label"></label>
+                <input asp-for="startTime" class="form-control" />
+                <span asp-validation-for="startTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="endTime" class="control-label"></label>
+                <input asp-for="endTime" class="form-control" />
+                <span asp-validation-for="endTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="applyToEveryWeek" /> @Html.DisplayNameFor(model => model.applyToEveryWeek)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="dayOfWeek" class="control-label"></label>
+                <input asp-for="dayOfWeek" class="form-control" />
+                <span asp-validation-for="dayOfWeek" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
