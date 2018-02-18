@@ -86,7 +86,7 @@ namespace SmartHome.Controllers
         }
 
         // GET: Scheduler/Edit/5
-        public ActionResult Edit(int? id, string deviceName)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
@@ -98,7 +98,8 @@ namespace SmartHome.Controllers
             {
                 return NotFound();
             }
-            @ViewBag.dName = deviceName;
+            @ViewBag.dID = scheduler.deviceId;
+            @ViewBag.dName = scheduler.deviceName;
             return View(scheduler);
         }
 
@@ -107,7 +108,7 @@ namespace SmartHome.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, [Bind("Id,startTime,endTime,applyToEveryWeek,dayOfWeek")] Scheduler scheduler)
+        public ActionResult Edit(int id, [Bind("Id,deviceId,deviceName,startTime,endTime,applyToEveryWeek,dayOfWeek")] Scheduler scheduler)
         {
             if (id != scheduler.Id)
             {

@@ -15,6 +15,16 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
+                <label asp-for="deviceId" class="control-label">Device ID</label>
+                <input asp-for="deviceId" class="form-control" value="@ViewBag.dID" readonly />
+                <span asp-validation-for="deviceId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="deviceName" class="control-label">Device name</label>
+                <input asp-for="deviceName" class="form-control" value="@ViewBag.dName" readonly />
+                <span asp-validation-for="deviceName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label class="control-label">Starting time</label>
                 <input asp-for="startTime" class="form-control" />
                 <span asp-validation-for="startTime" class="text-danger"></span>
@@ -27,7 +37,8 @@
             <div class="form-group">
                 <div class="checkbox">
                     <label>
-                        <input asp-for="applyToEveryWeek" /> Schedule every week</label>
+                        <input asp-for="applyToEveryWeek" /> Schedule every week
+                    </label>
                 </div>
             </div>
             <div class="form-group">
