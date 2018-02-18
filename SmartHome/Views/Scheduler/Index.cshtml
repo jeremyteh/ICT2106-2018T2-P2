@@ -1,53 +1,103 @@
 ﻿@model IEnumerable<SmartHome.Models.Scheduler>
+<link href="~/css/scheduler.css" rel="Stylesheet" />
 
 @{
     ViewData["Title"] = "All Schedules";
 }
 
-<h2>Index</h2>
+<div id="top">
+    <h2>< Weekly Settings ></h2>
+</div>
 
-<p>
-    <a asp-action="Index" asp-controller="Device">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.startTime)
+<div id="left">
+    <div style="display:inline-flex; ">
+        <h2 style="color:dimgrey;">Today</h2>
+        <img style="padding-left:10px;" src="~/images/calender.png" />
+    </div>
+    <h3 >@DateTime.Today.ToLongDateString()</h3>
+</div>
+
+
+<div id="right">
+    @if (Model != null)
+    {
+
+        for (int i = 0; i < 7; i++)
+        {
+            String day = "";
+
+            switch (i)
+            {
+                case 0:
+                    day = "Sunday";
+                    break;
+                case 1:
+                    day = "Monday";
+                    break;
+                case 2:
+                    day = "Tuesday";
+                    break;
+                case 3:
+                    day = "Wednesday";
+                    break;
+                case 4:
+                    day = "Thursday";
+                    break;
+                case 5:
+                    day = "Friday";
+                    break;
+                case 6:
+                    day = "Saturday";
+                    break;
+            }
+
+
+    <div id="daySchedule">
+        <thead>
+            <tr>
+                <th style="display: inline-block;">
+                    <h2>
+                    @Html.DisplayName(day)
+                    <a asp-action="SelectDay" asp-controller="Scheduler" asp-route-day="@day"><img src="~/images/addButton.png" /></a>
+                    </h2>               
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.endTime)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.applyToEveryWeek)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.dayOfWeek)
-                </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.startTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.endTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.applyToEveryWeek)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.dayOfWeek)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+                <th></th>
+            </tr>
+        </thead>
+
+        <table class="table">
+            <tbody>
+                @foreach (var item in Model)
+                {
+
+                    if (item.dayOfWeek.Equals(day))
+                    {
+
+            <tr>
+
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id">
+                        @Html.DisplayFor(modelItem => item.deviceName)
+                    </a>
+                        <div style="float:right; padding-right:3px;">
+                            <a asp-action="Edit" asp-route-id="@item.Id" asp-route-deviceName="@item.deviceName">
+                                <img width="15" height="15" src="~/images/editButton.png" />
+                            </a> 
+                            <a asp-action="Delete" asp-route-id="@item.Id" asp-route-deviceName="@item.deviceName">
+                                <img width="15" height="15" src="~/images/deleteButton.png" />
+                            </a>
+                        </div>
+                </td>
+            </tr>
+
+
+
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+        }
+    }
+
+</div>

@@ -13,6 +13,7 @@ namespace SmartHome.Controllers
     public class SchedulerController : Controller
     {
         internal DataGateway<Scheduler> dataGateway;
+        
 
         public SchedulerController(SmartHomeDbContext context)
         {
@@ -48,14 +49,26 @@ namespace SmartHome.Controllers
             return View("Confirm", scheduler);
         }
 
+        [HttpGet]
+        public ActionResult SelectDay(string day)
+        {
+            TempData["selectedDay"] = day;
+            return RedirectToAction("Index", "Device");
+        }
+
         // GET: Scheduler/Create
         [HttpGet]
         public ActionResult Create(int id, string deviceName)
         {
+
             @ViewBag.dID = id;
             @ViewBag.dName = deviceName;
+            ViewBag.dDay = TempData["selectedDay"];
+
             return View();
         }
+
+
 
         // POST: Scheduler/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -73,7 +86,7 @@ namespace SmartHome.Controllers
         }
 
         // GET: Scheduler/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? id, string deviceName)
         {
             if (id == null)
             {
@@ -85,6 +98,7 @@ namespace SmartHome.Controllers
             {
                 return NotFound();
             }
+            @ViewBag.dName = deviceName;
             return View(scheduler);
         }
 
@@ -123,7 +137,7 @@ namespace SmartHome.Controllers
         }
 
         // GET: Scheduler/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int? id, string deviceName)
         {
             if (id == null)
             {
@@ -135,7 +149,7 @@ namespace SmartHome.Controllers
             {
                 return NotFound();
             }
-
+            @ViewBag.dName = deviceName;
             return View(scheduler);
         }
 
