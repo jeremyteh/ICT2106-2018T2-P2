@@ -29,13 +29,6 @@ namespace SmartHome.Controllers
             return View();
         }
 
-        public IActionResult DeviceScheduler()
-        {
-
-
-            return View();
-        }
-
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });

@@ -1,4 +1,4 @@
-﻿@model SmartHome.Models.Scheduler
+﻿@model SmartHome.Models.Schedule
 
 @{
     ViewData["Title"] = "Confirm";
@@ -7,20 +7,20 @@
 <h2>Confirm</h2>
 
 <div>
-    <h4>Scheduler</h4>
+    <h4>Schedule</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
             Device ID
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.deviceId)
+            @Html.DisplayFor(model => model.device.Id)
         </dd>
         <dt>
             Device name
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.deviceName)
+            @Html.DisplayFor(model => model.device.DeviceName)
         </dd>
         <dt>
             Starting time
@@ -49,6 +49,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> 
+    <a asp-action="Edit" asp-route-id="@Model.scheduleId">Edit</a> 
     <a asp-action="Index">Back to List</a>
 </div>

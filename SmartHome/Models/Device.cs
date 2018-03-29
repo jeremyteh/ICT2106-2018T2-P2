@@ -32,5 +32,7 @@ namespace SmartHome.Models
         public int favourite { get; set; }
         
         public DateTime timestamp { get; set; }
+
+        //public virtual Device device { get; set; }
     }
 }

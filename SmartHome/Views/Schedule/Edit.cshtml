@@ -1,4 +1,4 @@
-﻿@model SmartHome.Models.Scheduler
+﻿@model SmartHome.Models.Schedule
 <link href="~/css/scheduler.css" rel="Stylesheet"/>
 
 @{
@@ -7,21 +7,21 @@
 
 <h2>Edit</h2>
 
-<h4>@ViewBag.dName</h4>
+<h4>Supposed to be device name</h4>
 <hr />
 <div class="row">
     <div class="col-md-4"  id="content" >
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="scheduleId" />
             <div class="form-group">
                 <label asp-for="deviceId" class="control-label">Device ID</label>
-                <input asp-for="deviceId" class="form-control" value="@ViewBag.dID" readonly />
+                <input asp-for="deviceId" class="form-control" value="" readonly />
                 <span asp-validation-for="deviceId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="deviceName" class="control-label">Device name</label>
-                <input asp-for="deviceName" class="form-control" value="@ViewBag.dName" readonly />
+                <input asp-for="deviceName" class="form-control" value="" readonly />
                 <span asp-validation-for="deviceName" class="text-danger"></span>
             </div>
             <div class="form-group">

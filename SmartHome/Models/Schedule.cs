@@ -7,15 +7,15 @@ using System.Threading.Tasks;
 
 namespace SmartHome.Models
 {
-    public class Scheduler
+    public class Schedule
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public int scheduleId { get; set; }
 
-        public int deviceId { get; set; }
+        //public int deviceId { get; set; }
 
-        public string deviceName { get; set; }
+        //public string deviceName { get; set; }
 
         [Required]
         [DataType(DataType.Time)]
@@ -30,5 +30,7 @@ namespace SmartHome.Models
         public bool applyToEveryWeek { get; set; }
 
         public string dayOfWeek { get; set; }
+
+        public Device device { get; set; }
     }
 }

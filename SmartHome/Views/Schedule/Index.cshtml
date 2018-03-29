@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SmartHome.Models.Scheduler>
+﻿@model IEnumerable<SmartHome.Models.Schedule>
 <link href="~/css/scheduler.css" rel="Stylesheet" />
 
 @{
@@ -58,7 +58,7 @@
                 <th style="display: inline-block;">
                     <h2>
                     @Html.DisplayName(day)
-                    <a asp-action="SelectDay" asp-controller="Scheduler" asp-route-day="@day"><img src="~/images/addButton.png" /></a>
+                    <a asp-action="SelectDay" asp-controller="Schedule" asp-route-day="@day"><img src="~/images/addButton.png" /></a>
                     </h2>               
                 </th>
                 <th></th>
@@ -72,26 +72,23 @@
 
                     if (item.dayOfWeek.Equals(day))
                     {
+                        <tr>
 
-            <tr>
-
-                <td>
-                    <a asp-action="Details" asp-route-id="@item.Id">
-                        @Html.DisplayFor(modelItem => item.deviceName)
-                    </a>
-                        <div style="float:right; padding-right:3px;">
-                            <a asp-action="Edit" asp-route-id="@item.Id">
-                                <img width="15" height="15" src="~/images/editButton.png" />
-                            </a> 
-                            <a asp-action="Delete" asp-route-id="@item.Id">
-                                <img width="15" height="15" src="~/images/deleteButton.png" />
-                            </a>
-                        </div>
-                </td>
-            </tr>
-
-
-
+                            <td>
+                                <a asp-action="Details" asp-route-id="@item.scheduleId">
+                                    @Html.DisplayFor(modelItem => item.device.deviceName)
+                                </a>
+                                    <div style="float:right; padding-right:3px;">
+                                        <a asp-action="Edit" asp-route-id="@item.scheduleId">
+                                            <img width="15" height="15" src="~/images/editButton.png" />
+                                        </a> 
+                                        <a asp-action="Delete" asp-route-id="@item.scheduleId">
+                                            <img width="15" height="15" src="~/images/deleteButton.png" />
+                                        </a>
+                                    </div>
+                            </td>
+                        </tr>
+                        
                     }
                 }
             </tbody>

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace SmartHome.DAL
 {
-    public class SchedulerGateway : DataGateway<Scheduler>
+    public class ScheduleGateway : DataGateway<Schedule>
     {
-        public SchedulerGateway(SmartHomeDbContext context) : base(context)
+        public ScheduleGateway(SmartHomeDbContext context) : base(context)
         {
 
         }

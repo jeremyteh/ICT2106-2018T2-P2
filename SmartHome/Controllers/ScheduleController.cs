@@ -10,18 +10,24 @@ using SmartHome.Models;
 
 namespace SmartHome.Controllers
 {
-    public class SchedulerController : Controller
+    public class ScheduleController : Controller
     {
-        internal DataGateway<Scheduler> dataGateway;
+        internal DataGateway<Schedule> dataGateway;
         
 
-        public SchedulerController(SmartHomeDbContext context)
+        public ScheduleController(SmartHomeDbContext context)
         {
-            dataGateway = new SchedulerGateway(context);
+            dataGateway = new ScheduleGateway(context);
         }
 
         // GET: Scheduler
         public ActionResult Index()
+        {
+            return View(dataGateway.SelectAll());
+        }
+
+        // GET: Scheduler
+        public ActionResult Index1()
         {
             return View(dataGateway.SelectAll());
         }
@@ -34,19 +40,20 @@ namespace SmartHome.Controllers
                 return NotFound();
             }
 
-            Scheduler scheduler = dataGateway.SelectById(id);
-            if (scheduler == null)
+            Schedule schedule = dataGateway.SelectById(id);
+            if (schedule == null)
             {
                 return NotFound();
             }
 
-            return View(scheduler);
+            return View(schedule);
         }
 
         // GET: Tours/Confirm
-        public ActionResult Confirm(Scheduler scheduler)
+        public ActionResult Confirm(Schedule schedule)
         {
-            return View("Confirm", scheduler);
+            Console.WriteLine("HELLO" + schedule.device.DeviceName);
+            return View("Confirm", schedule);
         }
 
         [HttpGet]
@@ -57,13 +64,22 @@ namespace SmartHome.Controllers
         }
 
         // GET: Scheduler/Create
-        [HttpGet]
+        /*[HttpGet]
         public ActionResult Create(int id, string deviceName)
         {
 
             @ViewBag.dID = id;
             @ViewBag.dName = deviceName;
             ViewBag.dDay = TempData["selectedDay"];
+
+            return View();
+        }*/
+        
+        public ActionResult Create(Device device)
+        {
+            ViewBag.dDay = TempData["selectedDay"];
+
+            ViewData["Device"] = device;
 
             return View();
         }
@@ -75,14 +91,16 @@ namespace SmartHome.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind("deviceId,deviceName,startTime,endTime,applyToEveryWeek,dayOfWeek")] Scheduler scheduler)
+        public ActionResult Create([Bind("startTime,endTime,applyToEveryWeek,dayOfWeek,device")] Schedule schedule)
         {
+            Console.WriteLine("ByeBye" + schedule.endTime);
             if (ModelState.IsValid)
             {
-                dataGateway.Insert(scheduler);
-                return RedirectToAction(nameof(Confirm), scheduler);
+                
+                dataGateway.Insert(schedule);
+                return RedirectToAction(nameof(Confirm), schedule);
             }
-            return View(scheduler);
+            return View(schedule);
         }
 
         // GET: Scheduler/Edit/5
@@ -93,14 +111,14 @@ namespace SmartHome.Controllers
                 return NotFound();
             }
 
-            Scheduler scheduler = dataGateway.SelectById(id);
-            if (scheduler == null)
+            Schedule schedule = dataGateway.SelectById(id);
+            if (schedule == null)
             {
                 return NotFound();
             }
-            @ViewBag.dID = scheduler.deviceId;
-            @ViewBag.dName = scheduler.deviceName;
-            return View(scheduler);
+            //@ViewBag.dID = schedule.deviceId;
+            //@ViewBag.dName = schedule.deviceName;
+            return View(schedule);
         }
 
         // POST: Scheduler/Edit/5
@@ -108,9 +126,9 @@ namespace SmartHome.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, [Bind("Id,deviceId,deviceName,startTime,endTime,applyToEveryWeek,dayOfWeek")] Scheduler scheduler)
+        public ActionResult Edit(int id, [Bind("scheduleId,startTime,endTime,applyToEveryWeek,dayOfWeek")] Schedule schedule)
         {
-            if (id != scheduler.Id)
+            if (id != schedule.scheduleId)
             {
                 return NotFound();
             }
@@ -119,11 +137,11 @@ namespace SmartHome.Controllers
             {
                 try
                 {
-                    dataGateway.Update(scheduler);
+                    dataGateway.Update(schedule);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!SchedulerExists(scheduler.Id))
+                    if (!ScheduleExists(schedule.scheduleId))
                     {
                         return NotFound();
                     }
@@ -134,24 +152,23 @@ namespace SmartHome.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(scheduler);
+            return View(schedule);
         }
 
         // GET: Scheduler/Delete/5
-        public ActionResult Delete(int? id, string deviceName)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            Scheduler scheduler= dataGateway.SelectById(id);
-            if (scheduler == null)
+            Schedule schedule = dataGateway.SelectById(id);
+            if (schedule == null)
             {
                 return NotFound();
             }
-            @ViewBag.dName = deviceName;
-            return View(scheduler);
+            return View(schedule);
         }
 
         // POST: Scheduler/Delete/5
@@ -163,10 +180,10 @@ namespace SmartHome.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool SchedulerExists(int id)
+        private bool ScheduleExists(int id)
         {
-            Scheduler scheduler = new Scheduler();
-            if ((scheduler = dataGateway.SelectById(id)) != null)
+            Schedule schedule = new Schedule();
+            if ((schedule = dataGateway.SelectById(id)) != null)
                 return true;
             return false;
         }

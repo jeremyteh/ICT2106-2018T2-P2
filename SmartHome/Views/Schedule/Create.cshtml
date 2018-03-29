@@ -1,7 +1,13 @@
-﻿@model SmartHome.Models.Scheduler
+﻿@model SmartHome.Models.Schedule
 <link href="~/css/scheduler.css" rel="Stylesheet" />
 @{
     ViewData["Title"] = "Create";
+}
+
+<!-- Passing Data From Controller to View using ViewData
+    https://www.c-sharpcorner.com/article/asp-net-mvc-passing-data-from-controller-to-view/-->
+@{
+    var data = (Device)ViewData["Device"];
 }
 
 <h2>Create</h2>
@@ -12,14 +18,12 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="deviceId" class="control-label">Device ID</label>
-                <input asp-for="deviceId" class="form-control" value="@ViewBag.dID" readonly/>
-                <span asp-validation-for="deviceId" class="text-danger"></span>
+                <label class="control-label">Device ID</label>
+                <input class="form-control" value=@data.Id readonly />
             </div>
             <div class="form-group">
-                <label asp-for="deviceName" class="control-label">Device name</label>
-                <input asp-for="deviceName" class="form-control" value="@ViewBag.dName" readonly/>
-                <span asp-validation-for="deviceName" class="text-danger"></span>
+                <label class="control-label">Device name</label>
+                <input class="form-control" value=@data.DeviceName readonly />
             </div>
             <div class="form-group">
                 <label asp-for="startTime" class="control-label">Starting time</label>
@@ -42,14 +46,17 @@
                 <label asp-for="dayOfWeek" class="control-label">Day</label>
                 @if (@ViewBag.dDay != null)
                 {
-            <input asp-for="dayOfWeek" class="form-control" value="@ViewBag.dDay" readonly />
+                    <input asp-for="dayOfWeek" class="form-control" value="@ViewBag.dDay" readonly />
                 }
                 else
                 {
-                <input asp-for="dayOfWeek" class="form-control"/>
+                    <input asp-for="dayOfWeek" class="form-control" />
                 }
                 <span asp-validation-for="dayOfWeek" class="text-danger"></span>
             </div>
+            
+            <!-- Added a hidden input -->
+            <input asp-for="device" class="form-control" value=@data readonly />
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>

@@ -78,7 +78,8 @@
                 @Html.DisplayFor(modelItem => item.timestamp)
             </td>
             <td>
-                <a asp-action="Create" asp-controller="Scheduler" asp-route-id="@item.Id" asp-route-deviceName="@item.DeviceName">Create New Schedule</a> |
+                @Html.ActionLink("Create New Schedule", "Create", "Schedule", new { Id = item.Id, HouseholdID = item.HouseholdID, DeviceName = item.DeviceName, Brand = item.Brand, Model = item.Model, Type = item.Type, Location = item.Location, State = item.State, UsageKwH = item.UsageKwH, favourite = item.favourite, timestamp = item.timestamp}) |
+                <!--<a asp-action="Create" asp-controller="Schedule" asp-route-id="@item.Id" asp-route-deviceName="@item.DeviceName">Create New Schedule</a>-->
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>

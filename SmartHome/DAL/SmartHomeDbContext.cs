@@ -16,12 +16,12 @@ namespace SmartHome.DAL
         }
 
         public DbSet<Device> Device { get; set; }
-        public DbSet<Scheduler> Scheduler { get; set; }
+        public DbSet<Schedule> Schedule { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Device>().ToTable("Device");
-            modelBuilder.Entity<Scheduler>().ToTable("Scheduler");
+            modelBuilder.Entity<Schedule>().ToTable("Schedule");
         }
     }
 }
